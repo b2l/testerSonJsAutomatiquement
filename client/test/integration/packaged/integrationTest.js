@@ -3,6 +3,17 @@ var expect = chai.expect;
 
 describe('Notre projet', function() {
 
+    before(function(done) {
+        console.log('Test launch');
+        setTimeout(function checkIfAppIsRunning() {
+            if (!document.getElementById('wrapper')) {
+                setTimeout(checkIfAppIsRunning, 1);
+            } else {
+                done();
+            }
+        }, 1);
+    });
+
     it ('peut ajouter un élément dans la liste', function() {
         // Given
         var button = document.getElementById('ajouter-element-button');
