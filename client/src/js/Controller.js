@@ -1,9 +1,11 @@
 var MicroEE = require('microee');
 var View = require('./View');
 var Model = require('./Model');
+var Store = require('./Store');
+
 
 function Controller() {
-    this.model = new Model();
+    this.model = new Model(new Store());
     this.view = new View();
 }
 
@@ -15,6 +17,11 @@ Controller.prototype.init = function() {
     this.view.renderElements(this.model.findAll());
 
     this.view.on('newElement', this.newElement.bind(this));
+    this.model.on('updated', this.modelUpdated.bind(this));
+};
+
+Controller.prototype.modelUpdated = function(elements) {
+    this.view.renderElements(elements);
 };
 
 Controller.prototype.newElement = function(value) {
