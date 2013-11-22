@@ -88,7 +88,16 @@ describe('Model', function() {
             'tata',
             'titi'
         ];
-        sinon.stub(store,'findAll').yields(expectedElements);
+
+        // On pourrait aussi faire un clone de l'array avec :
+        // var response = expectedElements.slice(0);
+        var response = [
+            'toto',
+            'tata',
+            'titi'
+        ];
+
+        sinon.stub(store,'findAll').yields(response);
 
         // When
         model.init();
@@ -99,6 +108,7 @@ describe('Model', function() {
         expect(allElements).to.deep.equal(expectedElements);
     });
 });
+
 },{"../../../src/js/Model":1,"../../../src/js/Store":2,"sinon":20}],4:[function(require,module,exports){
 
 

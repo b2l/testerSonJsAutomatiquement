@@ -32,7 +32,16 @@ describe('Model', function() {
             'tata',
             'titi'
         ];
-        sinon.stub(store,'findAll').yields(expectedElements);
+
+        // On pourrait aussi faire un clone de l'array avec :
+        // var response = expectedElements.slice(0);
+        var response = [
+            'toto',
+            'tata',
+            'titi'
+        ];
+
+        sinon.stub(store,'findAll').yields(response);
 
         // When
         model.init();

@@ -20,13 +20,16 @@ View.prototype.init = function() {
     this.button = document.createElement('button');
     this.button.innerHTML = "Ajouter";
     this.button.setAttribute('id', 'ajouter-element-button');
-    this.button.addEventListener('click', this.onSubmit.bind(this));
     this.container.appendChild(this.button);
 
     // Crée la liste
     this.list = document.createElement('ul');
     this.list.setAttribute('id', 'elements-list');
     this.container.appendChild(this.list);
+
+
+    // Gestions des events
+    this.button.addEventListener('click', this.onSubmit.bind(this));
 };
 
 View.prototype.renderElements = function(elements) {
@@ -40,6 +43,7 @@ View.prototype.renderElements = function(elements) {
 };
 
 View.prototype.onSubmit = function(e) {
+    e.preventDefault();
     this.emit('newElement', this.input.value);
     this.input.value = "";
 };

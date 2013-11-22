@@ -16,6 +16,7 @@ app.use(connect.compress());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(__dirname + '/client/packaged', { maxAge: 10000 }));
+app.use(express.static(__dirname + '/client/src/css', { maxAge: 10000 }));
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
